@@ -24,8 +24,8 @@ class LoginScreen extends Login {
     super(props);
     this.state = {
       ...this.state,
-      username: 'sami@seluxit.com',
-      password: 'sami'
+      username: '',
+      password: ''
     }
     this.stream = config.stream;
   }

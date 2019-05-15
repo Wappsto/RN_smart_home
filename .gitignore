@@ -1,6 +1,4 @@
 *.orig
 node_modules
 package-lock.json
-yarn-lock.json
-android
-ios
+yarn.lock
