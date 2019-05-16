@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     color: 'cyan'
   },
   header: {
+    width: bWidth - 20,
     marginTop: 30
   },
   content: {
