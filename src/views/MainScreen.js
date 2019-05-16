@@ -22,11 +22,9 @@ import * as stream from 'wappsto-redux/actions/stream';
 import { getEntity, getEntities } from 'wappsto-redux/selectors/entities';
 import { getRequest } from 'wappsto-redux/selectors/request';
 
-const networkName = 'Smart Home';
-const map = {
-  'Sensors': ['CO2', 'Temperature', 'Pressure', 'Humidity'],
-  'LED': ['RGB', 'Brightness', 'LED Panel']
-};
+import networkData from '../networkData';
+const networkName = networkData.name;
+const map = networkData.devices;
 
 function getValues(cache, state, network){
   if(network){
@@ -186,4 +184,5 @@ const styles = StyleSheet.create({
   }
 });
 
+export { map };
 export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);

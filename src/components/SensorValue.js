@@ -18,6 +18,8 @@ import styles from '../styles/sensor';
 
 import chroma from 'chroma-js';
 
+import networkData from '../networkData';
+
 function mapStateToProps(state, componentProps){
   let value = componentProps.value;
   let reportState;
@@ -34,8 +36,7 @@ const colorSchema = {
   Temperature: ['8AD5D7', '01B7CD', 'FDB813', 'F37020', 'C9234B'],
   Pressure: ['60A664', 'EEC800', 'D86C00', 'C1312C'],
   Humidity: ['C7F2FF', '6EADDF', '4F96D8', '357ECD', '1C68C0']
-}
-
+};
 
 class SensorValue extends Component {
   getItemData(value, reportState){
@@ -48,15 +49,9 @@ class SensorValue extends Component {
     } else {
       color = 'black';
     }
-    switch(value.name){
-      case 'CO2':
-        return { icon: 'leaf', unit: 'ppm', color };
-      case 'Temperature':
-        return { icon: 'thermometer-three-quarters', unit: '℃', color };
-      case 'Pressure':
-        return { icon: 'tachometer-alt', unit: 'Pa', color };
-      case 'Humidity':
-        return { icon: 'tint', unit: '%', color };
+    if(networkData.data[value.name]){
+      let data = networkData.data[value.name];
+      return { icon: data.icon, unit: data.unit, color };
     }
     return { icon: 'question-circle', unit: '', color};
   }

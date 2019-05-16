@@ -9,7 +9,8 @@ export default class Brightness extends Component {
   constructor(props){
     super(props);
     this.state = {
-      percent: this.calculatePercent(props.controlState.data, true)
+      percent: this.calculatePercent(props.controlState.data, true),
+      value: Number(props.controlState.data)
     }
     this.onChange = this.onChange.bind(this);
   }
@@ -39,7 +40,7 @@ export default class Brightness extends Component {
         startDegree={270}
         maxValue={value.number.max}
         onValueChange={this.onChange}
-        value={Number(controlState.data)}
+        value={this.state.value}
         endGradient={"#A6FFCB"}
         startGradient={"#12D8FA"}
         middleText=<Text>{this.state.percent}%</Text>

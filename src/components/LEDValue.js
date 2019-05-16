@@ -8,6 +8,9 @@ import {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
+import Color from 'color';
+
 import styles from '../styles/led';
 
 import RGB from './values/RGB';
@@ -45,32 +48,47 @@ function mapDispatchToProps(dispatch){
 }
 
 class LEDValue extends Component {
-  getItemView(value, controlState, updateRequest){
+  getItemView(value, controlState, updateRequest, reportState){
     let makeRequest = this.props.makeRequest;
     switch(value.name){
       case 'RGB':
-        return <RGB makeRequest={makeRequest} value={value} controlState={controlState}/>;
+        return {
+          item: <RGB makeRequest={makeRequest} value={value} controlState={controlState}/>,
+          report: <Icon name='circle' size={25} color={Color(Number(reportState.data)).hex()} />
+        };
       case 'Brightness':
-        return <Brightness makeRequest={makeRequest} value={value} controlState={controlState}/>;
+        return {
+          item: <Brightness makeRequest={makeRequest} value={value} controlState={controlState}/>,
+          report: <Text>{reportState.data}%</Text>
+        };
       case 'LED Panel':
-        return <LEDPanel makeRequest={makeRequest} value={value} controlState={controlState} updateRequest={updateRequest}/>;
+        return {
+          item: <LEDPanel makeRequest={makeRequest} value={value} controlState={controlState} updateRequest={updateRequest}/>,
+          report: null
+        };
     }
-    return <Text>{controlState.data}</Text>;
+    return {
+      item: <Text>{controlState.data}</Text>,
+      report: null
+    };
   }
   render(){
     let value = this.props.value;
     let updateRequest = this.props.updateRequest;
     let controlState = this.props.controlState;
     let reportState = this.props.reportState;
+    let view = this.getItemView(value, controlState, updateRequest, reportState);
     return (
       <Fragment>
-        <Text style={styles.centeredText}>{value.name}</Text>
-        {updateRequest && updateRequest.status === 'pending' && <ActivityIndicator size='small' color="cyan" style={{position: 'absolute', top: 0, right: 0}}/>}
+        <View style={styles.header}>
+          <Text style={styles.centeredText}>{value.name}</Text>
+          {updateRequest && updateRequest.status === 'pending' && <ActivityIndicator size='small' color="cyan" style={{position: 'absolute', top: 0, right: 0}}/>}
+        </View>
         <View style={styles.content}>
-          {this.getItemView(value, controlState, updateRequest)}
+          {view.item}
         </View>
         <View style={[styles.row, styles.footer]}>
-          {value.name !== 'LED Panel' && <Text>{reportState.data}</Text>}
+          {view.report}
           <Timestamp style={styles.timestamp} time={reportState.timestamp} />
         </View>
       </Fragment>

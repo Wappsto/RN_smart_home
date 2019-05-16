@@ -5,7 +5,8 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start'
   },
   infoName: {
-    alignSelf: 'center'
+    alignSelf: 'center',
+    marginBottom: 20
   }
 });
 

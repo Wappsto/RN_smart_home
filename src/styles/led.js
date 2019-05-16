@@ -35,30 +35,35 @@ const styles = StyleSheet.create({
   button: {
     borderWidth: 1,
     borderColor: 'cyan',
-    paddingLeft: 40,
-    paddingRight: 40,
+    justifyContent: 'center',
+    width: bWidth - 80,
+    height: 40
   },
   input: {
+    marginTop: 40,
+    textAlign: 'center',
     borderWidth: 0.4,
     borderColor: 'black',
-    paddingLeft: 100,
-    paddingRight: 100
+    width: bWidth - 80,
+    height: 40
   },
   buttonText: {
     color: 'cyan'
   },
   header: {
-    backgroundColor: 'green'
+    marginTop: 30
   },
   content: {
-    height: bHeight * 4 / 5,
-    justifyContent: 'center'
+    height: bHeight * 3.8 / 5,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   footer: {
     width: bWidth,
-    paddingBottom: 10,
+    paddingBottom: 20,
     paddingRight: 10,
     paddingLeft: 10,
+    marginBottom: 10,
     justifyContent: 'space-between'
   },
   row: {
@@ -67,6 +72,11 @@ const styles = StyleSheet.create({
   },
   timestamp: {
     color: '#cccccc'
+  },
+  icons: {
+    paddingLeft: 40,
+    paddingRight: 40,
+    marginTop: 10
   }
 });
 

@@ -1,0 +1,25 @@
+{
+  "name": "Smart Home",
+  "devices": {
+    "Sensors": ["CO2", "Temperature", "Pressure", "Humidity"],
+    "LED": ["RGB", "Brightness", "LED Panel"]
+  },
+  "data": {
+    "CO2": {
+      "icon": "leaf",
+      "unit": "ppm"
+    },
+    "Temperature": {
+      "icon": "thermometer-three-quarters",
+      "unit": "℃"
+    },
+    "Pressure": {
+      "icon": "tachometer-alt",
+      "unit": "Pa"
+    },
+    "Humidity": {
+      "icon": "tint",
+      "unit": "%"
+    }
+  }
+}
