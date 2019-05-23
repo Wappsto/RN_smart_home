@@ -41,9 +41,12 @@ export default class LEDPanel extends Component {
     }
     this.setState({ selected: value });
   }
-  getIconName(index){
-    let value = networkData.devices.Sensors[index];
-    return networkData.data[value].icon;
+  getIcons(selected){
+    return networkData.devices.Sensors.map((name, index) => (
+      <TouchableOpacity key={"sensor_"+name} onPress={() => {this.bindPanel(index)}}>
+        <Icon name={networkData.data[name].icon} size={35} color={selected === index ? 'cyan' : 'grey'} />
+      </TouchableOpacity>
+    ));
   }
   render(){
     let updateRequest = this.props.updateRequest;
@@ -62,18 +65,7 @@ export default class LEDPanel extends Component {
           <Text style={[styles.centeredText, styles.buttonText]}>Set</Text>
         </TouchableOpacity>
         <View style={[styles.row, styles.footer, styles.icons]}>
-          <TouchableOpacity onPress={() => {this.bindPanel(0)}}>
-            <Icon name={this.getIconName(0)} size={35} color={selected === 0 ? 'cyan' : 'grey'} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => {this.bindPanel(1)}}>
-            <Icon name={this.getIconName(1)} size={35} color={selected === 1 ? 'cyan' : 'grey'} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => {this.bindPanel(2)}}>
-            <Icon name={this.getIconName(2)} size={35} color={selected === 2 ? 'cyan' : 'grey'} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => {this.bindPanel(3)}}>
-            <Icon name={this.getIconName(3)} size={35} color={selected === 3 ? 'cyan' : 'grey'} />
-          </TouchableOpacity>
+          {this.getIcons(selected)}
         </View>
         <BindPanel selected={this.state.selected} makeRequest={this.props.makeRequest} update={this.update}/>
       </Fragment>

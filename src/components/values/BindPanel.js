@@ -34,7 +34,8 @@ class BindPanel extends Component {
     if(reportState && reportState.data !== this.previousData){
       this.previousData = reportState.data;
       let name = networkData.devices.Sensors[this.props.selected];
-      this.props.update(reportState.data + " " + networkData.data[name].unit);
+      let data = +Number(reportState.data).toFixed(2);
+      this.props.update(data + " " + networkData.data[name].unit);
     }
   }
   render() {
