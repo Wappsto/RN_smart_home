@@ -25,7 +25,7 @@
     "react-redux": "^7.0.3",
     "redux": "^4.0.1",
     "wappsto-components": "Wappsto/wappsto-components",
-    "wappsto-redux": "github:Wappsto/wappsto-redux"
+    "wappsto-redux": "^1.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",

@@ -11,7 +11,7 @@
     },
     "Temperature": {
       "icon": "thermometer-three-quarters",
-      "unit": "℃"
+      "unit": "°C"
     },
     "Pressure": {
       "icon": "tachometer-alt",
